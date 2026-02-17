@@ -1,0 +1,1395 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var logo = document.getElementById('logo-img');
+    if (logo) {
+      logo.onclick = function(e) {
+        e.preventDefault();
+        var homeSection = document.getElementById('home');
+        if (homeSection) {
+          homeSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+    }
+  });
+</script>
+<script>
+  document.getElementById('logo-img').addEventListener('click', function(e) {
+    e.preventDefault();
+    var homeSection = document.getElementById('home');
+    if (homeSection) {
+      homeSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="public/logosis.jpeg" />
+    <title>RG Class</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .about-animate {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .about-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 2px 12px rgba(127, 90, 240, 0.1);
+      }
+          body {
+            font-family: "Montserrat", "Poppins", sans-serif;
+            scroll-behavior: smooth;
+            background: radial-gradient(ellipse at 50% 50%, #23232a 0%, #18181b 60%, #0a0a0f 100%);
+            color: #e0e0e6;
+            position: relative;
+            overflow-x: hidden;
+          }
+          body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+              repeating-radial-gradient(circle at 20% 30%, #fff2 0px, #fff2 0.5px, transparent 1px 100px),
+              repeating-radial-gradient(circle at 80% 70%, #fff3 0px, #fff3 1px, transparent 2px 100px),
+              repeating-radial-gradient(circle at 60% 10%, #7f5af0 0px, #7f5af0 1px, transparent 2px 100px),
+              repeating-radial-gradient(circle at 40% 80%, #ffe066 0px, #ffe066 1px, transparent 2px 100px);
+            opacity: 0.18;
+            mix-blend-mode: lighten;
+          }
+          #home {
+          }
+          nav,
+          .org-structure,
+          .day-box,
+          .gallery-wrap,
+          .max-w-xl {
+            background: #18181b !important;
+            border-color: #7f5af0 !important;
+            box-shadow: 0 4px 24px rgba(127, 90, 240, 0.08);
+          }
+          .border-yellow-400 {
+            border-color: #7f5af0 !important;
+          }
+          .text-yellow-400 {
+            color: #7f5af0 !important;
+          }
+          .bg-yellow-400 {
+            background-color: #7f5af0 !important;
+            color: #fff !important;
+          }
+          .hover\:bg-yellow-500:hover {
+            background-color: #6246ea !important;
+            color: #fff !important;
+          }
+          .tab-btn.active {
+            background-color: #7f5af0 !important;
+            color: #fff !important;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(127, 90, 240, 0.12);
+          }
+          .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0 2px 12px rgba(127, 90, 240, 0.1);
+          }
+          .gallery-wrap {
+            background: #18181b !important;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(127, 90, 240, 0.1);
+          }
+          .polaroid {
+      min-width: 210px;
+      max-width: 210px;
+      height: 270px;
+            border-radius: 18px;
+            border: 4px solid #fff !important;
+            box-shadow: 0 8px 24px rgba(127, 90, 240, 0.18),
+              0 2px 8px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            cursor: pointer;mas
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background: transparent !important;
+          }
+          .polaroid:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 16px 32px rgba(127, 90, 240, 0.22),
+              0 4px 16px rgba(0, 0, 0, 0.18);
+          }
+          .polaroid img {
+            width: 100%;
+            height: calc(100% - 56px); 
+            object-fit: cover;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            display: block;
+            background: none !important;
+            margin: 0;
+            padding: 0;
+          }
+          .polaroid-label {
+            width: 100%;
+            background: #fff;
+            color: #23232a;
+            font-size: 1.08rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 18px 0 14px 0;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            box-shadow: 0 2px 8px rgba(127, 90, 240, 0.1);
+            letter-spacing: 1px;
+            min-height: 38px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+          }
+          .org-node {
+            color: #7f5af0 !important;
+            border-color: #7f5af0 !important;
+            background: #23232a !important;
+          }
+          .org-node.seksi {
+            font-weight: 700;
+            background: #23232a !important;
+            border-color: #7f5af0 !important;
+          }
+          .day-box h3 {
+            color: #7f5af0 !important;
+          }
+          .max-w-xl input,
+          .max-w-xl textarea {
+            background: #23232a !important;
+            color: #e0e0e6 !important;
+            border-color: #7f5af0 !important;
+          }
+          .max-w-xl button {
+            background: #7f5af0 !important;
+            color: #fff !important;
+            border-radius: 9999px;
+          }
+          .max-w-xl button:hover {
+            background: #6246ea !important;
+            color: #fff !important;
+          }
+          footer {
+            background: #18181b !important;
+            color: #7f5af0 !important;
+            border-color: #7f5af0 !important;
+          }
+          ::-webkit-scrollbar {
+            width: 8px;
+            background: #23232a;
+          }
+          ::-webkit-scrollbar-thumb {
+            background: #7f5af0;
+            border-radius: 8px;
+          }
+
+          .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          body {
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
+            background: #18181b;
+            color: #f3f3f3;
+          }
+
+          .org-structure {
+            margin-top: 26px;
+            background: #23232a;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+            text-align: center;
+          }
+          .org-structure h2 {
+            font-family: "Montserrat", "Poppins", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            transition: color 0.3s;
+          }
+          .org-tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+          }
+          .org-row {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+          }
+          .org-node {
+            background: #23232a;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #facc15;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+            border: 2px solid #facc15;
+            transition: transform 0.2s;
+          }
+          .org-node:hover {
+            transform: scale(1.05);
+          }
+          .org-node.wali {
+            background: #23232a;
+            color: #facc15;
+          }
+          .org-node.seksi {
+            background: #23232a;
+            border-color: #facc15;
+            font-weight: 700;
+          }
+
+          .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+          }
+          .day-box {
+            background: #23232a;
+            border: 2px solid #facc15;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+          }
+          .day-box h3 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #facc15;
+          }
+
+          .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .tab-btn.active {
+            background-color: #facc15;
+            color: black;
+            font-weight: 600;
+          }
+          .fade-animate {
+            animation: fadeInTab 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          @keyframes fadeInTab {
+            from {
+              opacity: 0;
+              transform: translateY(40px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @media (min-width: 768px) {
+            nav {
+              padding-left: 32px !important;
+              padding-right: 32px !important;
+              min-height: 64px;
+            }
+            nav .container {
+              max-width: 1100px;
+              margin-left: auto;
+              margin-right: auto;
+              padding-left: 0;
+              padding-right: 0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            #nav-menu {
+              position: static !important;
+              height: auto !important;
+              width: auto !important;
+              background: transparent !important;
+              box-shadow: none !important;
+              flex-direction: row !important;
+              align-items: center !important;
+              justify-content: flex-end !important;
+              padding-top: 0 !important;
+              padding-bottom: 0 !important;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+              opacity: 1 !important;
+              pointer-events: auto !important;
+              transform: none !important;
+              font-size: 1.08rem !important;
+              font-weight: 500 !important;
+              gap: 0 !important;
+              min-width: 0 !important;
+              box-sizing: border-box;
+            }
+            #nav-menu a {
+              color: #7f5af0 !important;
+              margin-left: 24px;
+              margin-right: 0;
+              padding: 6px 10px;
+              border-radius: 8px;
+              transition: background 0.18s, color 0.18s;
+            }
+            #nav-menu a:hover {
+              background: #23232a;
+              color: #ffe066 !important;
+            }
+            #nav-toggle {
+              display: none !important;
+            }
+          }
+    </style>
+  </head>
+  <body>
+    <audio id="backsound" src="public/backsound.mp3" autoplay loop style="display:none"></audio>
+    <nav
+      class="bg-[#23232a] py-4 sticky top-0 z-50 shadow border-b-2 border-yellow-400"
+    >
+      <div
+        class="container mx-auto px-4 flex flex-wrap justify-between items-center"
+      >
+          <img
+            id="logo-img"
+            src="public/sisfor.png"
+            alt="Logo RG"
+            style="height: 40px; width: auto; object-fit: contain"
+          />
+        </a>
+        <input
+          type="file"
+          id="logo-upload"
+          accept="image/*"
+          style="display: none"
+        />
+        <script>
+          document
+            .querySelector(".logo-link")
+            .addEventListener("click", function (e) {
+              e.preventDefault();
+              document.getElementById("logo-upload").click();
+            });
+          document
+            .getElementById("logo-upload")
+            .addEventListener("change", function (e) {
+              var file = e.target.files[0];
+              if (file) {
+                var reader = new FileReader();
+                reader.onload = function (ev) {
+                  document.getElementById("logo-img").src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+              }
+            });
+        </script>
+        <button
+          id="nav-toggle"
+          class="md:hidden block text-yellow-400 focus:outline-none z-50"
+          aria-label="Menu"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+        <div
+          id="nav-overlay"
+          class="fixed inset-0 bg-black bg-opacity-0 z-30 hidden md:hidden"
+        ></div>
+        <div
+          id="nav-menu"
+          class="fixed top-0 right-0 h-full w-64 max-w-[80vw] bg-[#23232a] bg-opacity-98 flex flex-col items-start justify-start pt-20 px-8 space-y-6 text-lg font-semibold text-yellow-400 z-40 shadow-lg transition-all duration-300 ease-in-out transform translate-x-full opacity-0 pointer-events-none md:static md:bg-transparent md:bg-opacity-100 md:flex-row md:space-y-0 md:space-x-4 md:text-base md:font-normal md:text-yellow-400 md:relative md:opacity-100 md:pointer-events-auto md:transform-none"
+        >
+          <a href="#home" class="hover:text-gray-700 font-medium">Home</a>
+          <a href="#about" class="hover:text-gray-700 font-medium">About</a>
+          <a href="#structure" class="hover:text-gray-700 font-medium"
+            >Structure & Schedule</a
+          >
+          <a href="#gallery-section" class="hover:text-gray-700 font-medium"
+            >Gallery</a
+          >
+          <a href="#contact" class="hover:text-gray-700 font-medium"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <section
+      id="home"
+      class="py-20 text-center bg-transparent shadow-sm fade-up"
+      style="
+        background: url('public/ramee.jpeg') center center/cover no-repeat,
+          linear-gradient(135deg, #18181b 0%, #23232a 100%);
+        min-height: 400px;
+        position: relative;
+      "
+    >
+      <div
+        style="
+          background: rgba(24, 24, 27, 0.65);
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        "
+      ></div>
+      <div style="position: relative; z-index: 2">
+        <h1 class="text-5xl font-bold mb-4 text-yellow-400">
+          Welcome to RG class
+        </h1>
+        <p class="text-lg text-gray-300 mb-6">
+          Tempat informasi lengkap tentang kelas, struktur organisasi, dan
+          jadwal.
+        </p>
+        <a
+          href="#about"
+          class="bg-yellow-400 px-6 py-2 rounded-full font-medium hover:bg-yellow-500 text-black transition"
+          >Let's Goooo</a
+        >
+      </div>
+    </section>
+
+    <section
+      id="about"
+      class="py-10 container mx-auto px-4 bg-transparent rounded-xl fade-up"
+    >
+      <div class="w-full flex justify-center mt-8 mb-6 fade-up">
+        <div class="h-1 w-2/3 bg-yellow-400 rounded-full opacity-60 fade-up"></div>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-yellow-400 fade-up">
+        Tentang Kami
+      </h2>
+      <div class="max-w-3xl mx-auto text-center text-gray-300 mb-6 text-base md:text-lg fade-up">
+        <p></p>
+        Kami adalah sekelompok mahasiswa semester satu ber-Prodi Sistem
+        Informasi.
+        <p>
+          Hanya sekumpulan NPC dari universitas Indraprasta atau bisa dibilang
+          UI nya Condet.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="bg-[#23232a] p-4 rounded-lg shadow border-2 border-yellow-400 fade-up">
+          <h3 class="text-2xl md:text-3xl font-bold mb-2 text-yellow-400">1</h3>
+          <p class="font-semibold text-gray-200">Semester</p>
+        </div>
+        <div class="bg-[#23232a] p-4 rounded-lg shadow border-2 border-yellow-400 fade-up">
+          <h3 class="text-2xl md:text-3xl font-bold mb-2 text-yellow-400">
+            41
+          </h3>
+          <p class="font-semibold text-gray-200">Mahasiswa</p>
+        </div>
+        <div class="bg-[#23232a] p-4 rounded-lg shadow border-2 border-yellow-400 fade-up">
+          <h3 class="text-2xl md:text-3xl font-bold mb-2 text-yellow-400">
+            24
+          </h3>
+          <p class="font-semibold text-gray-200">Laki-laki</p>
+        </div>
+        <div class="bg-[#23232a] p-4 rounded-lg shadow border-2 border-yellow-400 fade-up">
+          <h3 class="text-2xl md:text-3xl font-bold mb-2 text-yellow-400">
+            17
+          </h3>
+          <p class="font-semibold text-gray-200">Perempuan</p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="structure"
+      class="py-20 container mx-auto px-4 bg-transparent rounded-xl fade-up"
+    >
+    </section>
+
+    <h2 class="text-4xl font-bold text-center mb-10 text-yellow-400">
+      Structure &amp; Schedule
+    </h2>
+    <div class="flex flex-wrap justify-center mb-8 space-x-2 md:space-x-4">
+      <button
+        id="btnStructure"
+        class="tab-btn px-4 md:px-6 py-2 border-2 border-yellow-400 rounded-full bg-[#23232a] text-yellow-400 hover:bg-yellow-500 hover:text-black transition active"
+        onclick="showTab('structure')"
+      >
+        Struktur
+      </button>
+      <button
+        id="btnSchedule"
+        class="tab-btn px-4 md:px-6 py-2 border-2 border-yellow-400 rounded-full bg-[#23232a] text-yellow-400 hover:bg-yellow-500 hover:text-black transition active"
+        onclick="activateScheduleTabAndScroll();"
+      >
+        Jadwal
+      </button>
+    </div>
+
+    <section
+      id="structureTab"
+      class="org-structure tab-content active fade-up"
+      style="background: transparent"
+      onscroll="onScrollFadeUp()"
+    >
+      <div class="org-tree">
+        <div class="org-node wali fade-up">Sophan Sofian (DPA)</div>
+        <div class="org-row flex-wrap">
+          <div class="org-node fade-up">Ardita (Ketua)</div>
+          <div class="org-node fade-up">Ilham (Wakil)</div>
+        </div>
+        <div class="org-row flex-wrap">
+          <div class="org-node fade-up">Mutiara (Sekre)</div>
+          <div class="org-node fade-up">Tasya (Bendahara)</div>
+        </div>
+        <div class="org-node seksi fade-up">Penanggung Jawab Matkul</div>
+        <div class="org-row flex-wrap">
+          <div class="org-node fade-up">Aldhea (B.Indo)</div>
+          <div class="org-node fade-up">Silvia (Agama)</div>
+          <div class="org-node fade-up">Hafidh (KSI)</div>
+          <div class="org-node fade-up">Arif (Algoritma)</div>
+          <div class="org-node fade-up">Shabrina (MTK)</div>
+          <div class="org-node fade-up">Salsabila (Pancasila)</div>
+          <div class="org-node fade-up">Rafid (Program)</div>
+          <div class="org-node fade-up">Daffa (B.Inggris)</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="scheduleTab" class="tab-content fade-up">
+      <div class="schedule-grid" style="max-width: 800px; margin: 0 auto; grid-template-columns: 1fr; gap: 1rem">
+        <div class="flex flex-wrap gap-4 justify-center">
+          <div class="day-box w-full sm:w-1/2 text-center" style="flex: 1">
+            <h3>Senin</h3>
+            <ul>
+              <li>Agama Islam :</li>
+              <li><i>12.00-13.40 (R.4.4-1)</i></li>
+              <li>Bahasa Indonesia :</li>
+              <li><i>13.40-15.20 (R.4.4-1)</i></li>
+            </ul>
+          </div>
+          <div class="day-box w-full sm:w-1/2 text-center" style="flex: 1">
+            <h3>Rabu</h3>
+            <ul>
+              <li>Konsep SisFor :</li>
+              <li><i>07.00-09.30 (R.4.4-1)</i></li>
+              <li>Algoritma :</li>
+              <li><i>09.30-12.00 (R.4.4-1)</i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4 justify-center mt-4">
+          <div class="day-box w-full sm:w-1/2 text-center" style="flex: 1">
+            <h3>Kamis</h3>
+            <ul>
+              <li>Matematika :</li>
+              <li><i>08.40-10.20 (R.4.4-1)</i></li>
+              <li>Pancasila :</li>
+              <li><i>10.20-12.00 (R.4.4-1)</i></li>
+            </ul>
+          </div>
+          <div class="day-box w-full sm:w-1/2 text-center" style="flex: 1">
+            <h3>Jumat</h3>
+            <ul>
+              <li>Pemrograman :</li>
+              <li><i>07.30-09.10 (R.4.4-4)</i></li>
+              <li>Bahasa Inggris :</li>
+              <li><i>09.10-10.50 (R.4.4-4)</i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      id="gallery-section"
+      class="py-10 container mx-auto px-2 md:px-4 fade-up visible"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-bold text-center mb-6 text-yellow-400"
+      >
+        Galeri mahasigma RG
+      </h2>
+      <div
+        class="gallery-wrap"
+        style="
+          background: #18181b;
+          border-radius: 18px;
+          box-shadow: 0 8px 32px rgba(127, 90, 240, 0.1);
+          padding: 16px 8px;
+          position: relative;
+        "
+      >
+        <div
+          class="gallery"
+          id="gallery-slider"
+          style="
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 12px;
+          "
+        >
+          <div class="polaroid">
+            <img src="public/adit.jpeg" alt="Foto 1" />
+            <div class="polaroid-label">Aditya - yomaann</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/ilham.jpeg" alt="foto 2" />
+            <div class="polaroid-label">Ilham - bwabwabwa</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/apis.jpeg" alt="Foto 3" />
+            <div class="polaroid-label">Havis - Kecaw men</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/james.jpeg" alt="Foto 4" />
+            <div class="polaroid-label">James - weekk</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/febri.jpeg" alt="Foto 5" />
+            <div class="polaroid-label">Febri - SoSuci Aaa~</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/widayu.jpeg" alt="Foto 6" />
+            <div class="polaroid-label">Widayu - yali yalili</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/fatih.jpeg" alt="Foto 7" />
+            <div class="polaroid-label">Fatih - ngopi enak</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/eka.jpeg" alt="Foto 8" />
+            <div class="polaroid-label">Eka - Love green</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/raihan.jpeg" alt="Foto 9" />
+            <div class="polaroid-label">Raihan - Breezy</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/andikan.jpeg" alt="Foto 10" />
+            <div class="polaroid-label">Andika.N - cap gurita</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/dian.jpeg" alt="Foto 11" />
+            <div class="polaroid-label">Dian - Onde Mande</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/hafid.jpeg" alt="Foto 12" />
+            <div class="polaroid-label">Hafidh - GFX maker</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/isan.jpeg" alt="Foto 13" />
+            <div class="polaroid-label">Ihsan - Haus?Ineklah</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/silvia.jpeg" alt="Foto 14" />
+            <div class="polaroid-label">Silvia - Tidur untuk bermimpi, bangun untuk tidur lagi</div>
+          </div>
+          <div class="polaroid">
+            <img src="public/arif.jpeg" alt="Foto 15" />
+            <div class="polaroid-label">Arif - hell yeah!!</div>
+          </div>
+          <div class="polaroid">
+            <img
+            src="public/dapa.jpeg"
+            alt="Foto 16" />
+            <div class="polaroid-label">Daffa - RI 1 2030</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/rfarel.jpeg"
+              alt="Foto 17"
+            />
+            <div class="polaroid-label">R.Farel - Just Do It!</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/rafid.jpeg"
+              alt="Foto 18"
+            />
+            <div class="polaroid-label">Rafid - bntr, lgi di AS</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/zanu.jpeg"
+              alt="Foto 19"
+            />
+            <div class="polaroid-label">Zanuar - cihuyyy</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/jona.jpeg"
+              alt="Foto 20"
+            />
+            <div class="polaroid-label">Jonstill - P sparing!</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/dhea.jpeg"
+              alt="Foto 21"
+            />
+            <div class="polaroid-label">Aldhea - sangat rispek</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/mutiara.jpeg"
+              alt="Foto 22"
+            />
+            <div class="polaroid-label">Mutiara - rispek</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="public/salsa.jpeg"
+              alt="Foto 23"
+            />
+            <div class="polaroid-label">Salsa - gak rispek</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 24"
+            />
+            <div class="polaroid-label">Foto 24</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 25"
+            />
+            <div class="polaroid-label">Foto 25</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 26"
+            />
+            <div class="polaroid-label">Foto 26</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 27"
+            />
+            <div class="polaroid-label">Foto 27</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 28"
+            />
+            <div class="polaroid-label">Foto 28</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 29"
+            />
+            <div class="polaroid-label">Foto 29</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 30"
+            />
+            <div class="polaroid-label">Foto 30</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 31"
+            />
+            <div class="polaroid-label">Foto 31</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 32"
+            />
+            <div class="polaroid-label">Foto 32</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 33"
+            />
+            <div class="polaroid-label">Foto 33</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 34"
+            />
+            <div class="polaroid-label">Foto 34</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 35"
+            />
+            <div class="polaroid-label">Foto 35</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 36"
+            />
+            <div class="polaroid-label">Foto 36</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 37"
+            />
+            <div class="polaroid-label">Foto 37</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 38"
+            />
+            <div class="polaroid-label">Foto 38</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 39"
+            />
+            <div class="polaroid-label">Foto 39</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 40"
+            />
+            <div class="polaroid-label">Foto 40</div>
+          </div>
+          <div class="polaroid">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="Foto 41"
+            />
+            <div class="polaroid-label">Foto 41</div>
+          </div>
+        </div>
+      </div>
+      <script>
+        let gallery = document.getElementById("gallery-slider");
+        let interval = setInterval(() => {
+          if (gallery) {
+            gallery.scrollBy({ left: 244, behavior: "smooth" });
+            if (
+              gallery.scrollLeft + gallery.clientWidth >=
+              gallery.scrollWidth - 10
+            ) {
+              setTimeout(() => {
+                gallery.scrollTo({ left: 0, behavior: "smooth" });
+              }, 800);
+            }
+          }
+        }, 3500);
+        document.getElementById("gallery-prev").onclick = function () {
+          gallery.scrollBy({ left: -244, behavior: "smooth" });
+        };
+        document.getElementById("gallery-next").onclick = function () {
+          gallery.scrollBy({ left: 244, behavior: "smooth" });
+        };
+      </script>
+      <style>
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(60px);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      </style>
+    </section>
+
+    <section id="contact" class="py-10 container mx-auto px-4 fade-up">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-center mb-6 text-yellow-400"
+      >
+        Contact Us
+      </h2>
+      <div
+        class="max-w-xl mx-auto bg-[#23232a] rounded-xl shadow border-2 border-yellow-400 p-4 md:p-8"
+      >
+        <form id="contact-form">
+          <table class="w-full text-left mb-4">
+            <tbody>
+              <tr>
+                <td class="py-2 pr-4 text-yellow-400 font-semibold">Dari</td>
+                <td class="py-2">
+                  <input name="dari" type="text" class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-yellow-400 focus:outline-none" placeholder="Nama pengirim" required />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4 text-yellow-400 font-semibold">Kepada</td>
+                <td class="py-2">
+                  <input name="kepada" type="text" class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-yellow-400 focus:outline-none" placeholder="Nama penerima" required />
+                </td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4 text-yellow-400 font-semibold">Pesan</td>
+                <td class="py-2">
+                  <textarea name="pesan" class="w-full px-3 py-2 rounded bg-gray-800 text-white border border-yellow-400 focus:outline-none" rows="3" placeholder="Tulis pesan..." required></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-full hover:bg-yellow-500 transition w-full">Kirim Pesan</button>
+        </form>
+        <div id="contact-success" class="text-green-500 font-semibold text-center mt-4" style="display: none">Sukses terkirim !</div>
+      </div>
+    </section>
+
+    <footer
+      class="w-full text-center py-6 bg-[#23232a] text-yellow-400 font-semibold border-t-2 border-yellow-400"
+    >
+      <div style="margin-bottom: 12px;">
+        <a href="https://instagram.com/ilhamm.18" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#7f5af0;font-weight:600;" class="ig-link">
+          <img src="public/igeh.png" alt="Instagram" style="height:28px;width:28px;vertical-align:middle;filter:drop-shadow(0 2px 8px rgba(127,90,240,0.18));">
+          <span class="ig-link-text">Follow me on Instagram</span>
+        </a>
+      </div>
+      &copy; 2025 by ilham All rights reserved.
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var aboutSection = document.getElementById("about");
+          if (aboutSection) {
+            setTimeout(function () {
+              aboutSection.scrollIntoView({ behavior: "smooth" });
+            }, 400);
+          }
+        });
+      </script>
+    </footer>
+  </body>
+
+  <script>
+    function onScrollFadeUp() {
+      document.querySelectorAll(".fade-up").forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40) {
+          el.classList.add("visible");
+        } else {
+          el.classList.remove("visible");
+        }
+      });
+    }
+    window.addEventListener("scroll", onScrollFadeUp);
+    window.addEventListener("DOMContentLoaded", onScrollFadeUp);
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const navToggle = document.getElementById("nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      const navOverlay = document.getElementById("nav-overlay");
+      function openMenu() {
+        navMenu.classList.remove(
+          "translate-x-full",
+          "opacity-0",
+          "pointer-events-none"
+        );
+        navMenu.classList.add(
+          "translate-x-0",
+          "opacity-100",
+          "pointer-events-auto"
+        );
+        navOverlay.classList.remove("hidden");
+        navOverlay.classList.add("bg-opacity-40");
+      }
+      function closeMenu() {
+        navMenu.classList.add(
+          "translate-x-full",
+          "opacity-0",
+          "pointer-events-none"
+        );
+        navMenu.classList.remove(
+          "translate-x-0",
+          "opacity-100",
+          "pointer-events-auto"
+        );
+        navOverlay.classList.add("hidden");
+        navOverlay.classList.remove("bg-opacity-40");
+      }
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (window.innerWidth < 768) {
+          if (navMenu.classList.contains("translate-x-full")) {
+            openMenu();
+          } else {
+            closeMenu();
+          }
+        }
+      });
+      navOverlay.addEventListener("click", function () {
+        closeMenu();
+      });
+      document.addEventListener("click", function (e) {
+        if (
+          window.innerWidth < 768 &&
+          navMenu.classList.contains("translate-x-0")
+        ) {
+          if (!navMenu.contains(e.target) && e.target !== navToggle) {
+            closeMenu();
+          }
+        }
+      });
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 768) {
+          navMenu.classList.remove(
+            "translate-x-full",
+            "opacity-0",
+            "pointer-events-none"
+          );
+          navMenu.classList.add(
+            "translate-x-0",
+            "opacity-100",
+            "pointer-events-auto"
+          );
+          navOverlay.classList.add("hidden");
+          navOverlay.classList.remove("bg-opacity-40");
+        } else {
+          closeMenu();
+        }
+      });
+      if (window.innerWidth < 768) {
+        closeMenu();
+      } else {
+        navMenu.classList.remove(
+          "translate-x-full",
+          "opacity-0",
+          "pointer-events-none"
+        );
+        navMenu.classList.add(
+          "translate-x-0",
+          "opacity-100",
+          "pointer-events-auto"
+        );
+        navOverlay.classList.add("hidden");
+        navOverlay.classList.remove("bg-opacity-40");
+      }
+      navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (window.innerWidth < 768) {
+            closeMenu();
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    function showTab(tab) {
+      var structureTab = document.getElementById("structureTab");
+      var scheduleTab = document.getElementById("scheduleTab");
+      var btnStructure = document.getElementById("btnStructure");
+      var btnSchedule = document.getElementById("btnSchedule");
+      structureTab.classList.remove("active");
+      scheduleTab.classList.remove("active");
+      btnStructure.classList.remove("active");
+      btnSchedule.classList.remove("active");
+      if (tab === "structure") {
+        void structureTab.offsetWidth;
+        structureTab.classList.add("active");
+        btnStructure.classList.add("active");
+      } else {
+        void scheduleTab.offsetWidth;
+        scheduleTab.classList.add("active");
+        btnSchedule.classList.add("active");
+      }
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href="#home"]').forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = document.getElementById("home");
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 10,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var jelajahiBtn = document.querySelector(
+        'a[href="#about"].bg-yellow-400'
+      );
+      if (jelajahiBtn) {
+        jelajahiBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = document.getElementById("about");
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 10,
+              behavior: "smooth",
+            });
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .querySelectorAll('a[href="#about"].hover\:text-gray-700')
+        .forEach(function (el) {
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            var target = document.getElementById("about");
+            if (target) {
+              window.scrollTo({
+                top: target.offsetTop - 10,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href="#about"]').forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = document.querySelector("#about h2");
+          if (target) {
+            window.scrollTo({
+              top: target.getBoundingClientRect().top + window.scrollY - 60,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href="#structure"]').forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = document.getElementById("structureTab");
+          if (target) {
+            window.scrollTo({
+              top: target.getBoundingClientRect().top + window.scrollY - 60,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .querySelectorAll('a[href="#gallery-section"]')
+        .forEach(function (el) {
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            var target = document.getElementById("gallery-section");
+            if (target) {
+              window.scrollTo({
+                top: target.getBoundingClientRect().top + window.scrollY - 60,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href="#contact"]').forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = document.getElementById("contact");
+          if (target) {
+            window.scrollTo({
+              top: target.getBoundingClientRect().top + window.scrollY - 60,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var btnKirim = document.querySelector("#contact button");
+      var notif = document.getElementById("contact-success");
+      if (btnKirim) {
+        btnKirim.addEventListener("click", function (e) {
+          var dari = document.querySelector(
+            '#contact input[placeholder="Nama pengirim"]'
+          );
+          var kepada = document.querySelector(
+            '#contact input[placeholder="Nama penerima"]'
+          );
+          var pesan = document.querySelector("#contact textarea");
+          if (dari.value.trim() && kepada.value.trim() && pesan.value.trim()) {
+            notif.style.display = "block";
+            setTimeout(function () {
+              notif.style.display = "none";
+            }, 2000);
+          } else {
+            alert("Mohon isi semua kolom!");
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbx4LHGX3gmFbykdNQ2Qp8SrgiUHI8U4V4clVG1TuJYAImpZr4nfxPtOycvJPQGdWG9V/exec';
+      const form = document.getElementById('contact-form');
+      const notif = document.getElementById('contact-success');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => {
+            notif.style.display = 'block';
+            setTimeout(function() {
+              notif.style.display = 'none';
+            }, 2000);
+            form.reset();
+          })
+          .catch(error => alert('Gagal mengirim!'));
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var btnSchedule = document.getElementById("btnSchedule");
+      var scheduleTab = document.getElementById("scheduleTab");
+      if (btnSchedule && scheduleTab) {
+        btnSchedule.addEventListener("click", function () {
+          scheduleTab.classList.remove("fade-animate");
+          void scheduleTab.offsetWidth;
+          scheduleTab.classList.add("fade-animate");
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var btnStructure = document.getElementById("btnStructure");
+      var structureTab = document.getElementById("structureTab");
+      if (btnStructure && structureTab) {
+        btnStructure.addEventListener("click", function () {
+          structureTab.classList.remove("fade-animate");
+          void structureTab.offsetWidth;
+          structureTab.classList.add("fade-animate");
+        });
+      }
+    });
+  </script>
+  <script>
+    function scrollToSchedule() {
+      var scheduleSection = document.getElementById("scheduleTab");
+      if (scheduleSection) {
+        scheduleSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  </script>
+  <script>
+    function activateScheduleTabAndScroll() {
+      showTab("schedule");
+      setTimeout(function () {
+        var scheduleTab = document.getElementById("scheduleTab");
+        if (scheduleTab) {
+          var dayBoxes = scheduleTab.querySelectorAll(".day-box");
+          if (dayBoxes.length > 0) {
+            dayBoxes[0].scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+      }, 200); 
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        setTimeout(function () {
+          window.scrollTo({
+            top: aboutSection.offsetTop - 10,
+            behavior: "smooth",
+          });
+        }, 400); 
+      }
+    });
+  </script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('backsound');
+        var playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function() {
+            var playOnUserAction = function() {
+              audio.play();
+              document.removeEventListener('click', playOnUserAction);
+              document.removeEventListener('touchstart', playOnUserAction);
+            };
+            document.addEventListener('click', playOnUserAction);
+            document.addEventListener('touchstart', playOnUserAction);
+          });
+        }
+      });
+    </script>
+</html>
+
